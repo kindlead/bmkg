@@ -35,7 +35,7 @@
             </div>
         </li>
         <li class="nav-item @if($checkPoint == 'manage_data') active @endif">
-            <a class="nav-link" data-toggle="collapse" href="#manage_data" style="border:none" aria-expanded="false" aria-controls="customer">
+            <a class="nav-link" data-toggle="collapse" href="#manage_data" style="border:none" aria-expanded="false" aria-controls="manage_data">
                 <i class="fas fa-copy menu-icon" style="font-size:12px;"></i>
                 <span class="menu-title " style="font-size:12px;">Manage Data</span>
                 <i class="menu-arrow"></i>
