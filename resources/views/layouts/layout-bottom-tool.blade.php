@@ -1,6 +1,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.min.js"></script>
 
+
+
 <script>
     $(document).ready(function(){
         $( '.uang' ).mask('0.000.000.000.000.000.000.000', {reverse: true});
