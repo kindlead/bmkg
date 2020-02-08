@@ -46,6 +46,7 @@
                 <li class="nav-item"> <a class="nav-link text-white" style="font-size:10px; border:none;" href="">Tambah Pelanggan</a></li>
                 </ul>
             </div>
+            rian
         </li>
         {{-- Customer --}}
         {{-- <li class="nav-item @if($checkPoint == 'customer') active @endif">
