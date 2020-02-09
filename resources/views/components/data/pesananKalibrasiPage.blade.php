@@ -1,3 +1,8 @@
+@if(session('success'))
+    <script>
+        infosuccess('{{session('success')}}');
+    </script>
+@endif
 <div class="col-md-12 col-lg-12">
     <div class="card">
         <div class="card-body">
@@ -27,7 +32,7 @@
                                 <td class="text-center">
                                     <a href="{{url('detail-pemesanan')}}/{{$row['id']}}" class="btn btn-success btn-sm p-1"><i class="fas fa-eye"></i></a>
                                     <a href="" class="btn btn-info btn-sm p-1"><i class="fas fa-edit"></i></a>
-                                    <a href="" class="btn btn-danger btn-sm p-1"><i class="fas fa-trash"></i></a>
+                                    <a href="{{url('delete-pesanan')}}/{{$row['id']}}" class="btn btn-danger btn-sm p-1"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                         @endforeach

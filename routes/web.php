@@ -24,5 +24,6 @@ Route::middleware('auth')->group(function(){
     Route::post('tambah-pesanan', 'DataController@tambahPesananKalibrasi');
     Route::get('data-pesanan-kalibrasi', 'DataController@pesananKalibrasiPage');
     Route::get('detail-pemesanan/{id}', 'DataController@detailPesanan');
+    Route::get('delete-pesanan/{id}', 'DataController@deletePesanan');
     Route::post('tambah-pelanggan', 'DataController@tambahPelanggan');
 });

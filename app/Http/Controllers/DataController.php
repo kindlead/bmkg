@@ -37,4 +37,8 @@ class DataController extends Controller
         $data['thisPesanan'] = PesananKalibrasi::find($id);
         return view('DataRequest.detailPesanan', compact('data'));
     }
+    public function deletePesanan($id){
+        PesananKalibrasi::find($id)->delete();
+        return redirect('data-pesanan-kalibrasi')->with('success', 'Data berhasil dihapus !');
+    }
 }
