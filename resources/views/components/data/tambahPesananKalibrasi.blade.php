@@ -47,7 +47,7 @@
                     <input type="text" name="tanggal_masuk" class="form-control" placeholder="MM/DD/YY" id="date">
                 </div>
                 <div class="col-2 mt-3">
-                    <label for="">Tgl Masuk</label>
+                    <label for="">Tgl Keluar</label>
                     <input type="text" name="tanggal_selesai" class="form-control" placeholder="MM/DD/YY" id="date">
                 </div>
                 <div class="col-12 mt-3">
@@ -106,7 +106,7 @@
                       <input type="text" name="email" name="jenis_perusahaan" class="form-control">
                   </div>
                   <div class="col-12 mt-3">
-                      <label for="">Email Perusahaan</label>
+                      <label for="">Alamat Perusahaan</label>
                      <textarea name="alamat" id="" cols="30" rows="10" class="form-control"></textarea>
                   </div>
               </div>
