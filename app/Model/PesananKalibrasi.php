@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class PesananKalibrasi extends Model
 {
     protected $table = "pesanan_kalibrasi";
+    protected $primaryKey = "uid";
+    public $incrementing = false;
     protected $fillable = [
         'uid',
         'uid_pegawai',

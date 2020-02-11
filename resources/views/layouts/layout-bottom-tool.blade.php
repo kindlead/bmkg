@@ -62,22 +62,8 @@
 
 
 {{-- Content --}}
-@if($title == "customer")
-    @component('Air.components.customer.datatable')@endcomponent
-@endif
-
-
-@if($title == "proforma_si")
-    @component('Air.components.PreOrder.datatable')@endcomponent
-@endif
-@if($title == "proforma_master")
-    @component('Air.components.PreOrder.datatable-ph_match')@endcomponent
-@endif
-@if($title == "pre_order_house")
-    @component('Air.components.PreOrderHouse.datatable')@endcomponent
-@endif
-@if($title == "shipping_instruction")
-    @component('Air.components.ShippingInstruction.datatable')@endcomponent
+@if($title == "report")
+    @component('components.data.datatable-pesanan-kalibrasi')@endcomponent
 @endif
 
 
