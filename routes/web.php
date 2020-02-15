@@ -27,6 +27,17 @@ Route::middleware('auth')->group(function(){
     Route::get('dtPesananKalibrasi', 'DataController@dtPesananKalibrasi');
     Route::get('edit-pesanan/{uid}', 'DataController@editPesanan');
     Route::post('tambah-pesanan', 'DataController@tambahPesananKalibrasi');
-    Route::post('tambah-pelanggan', 'DataController@tambahPelanggan');
     Route::post('edit-pesanan/{uid}', 'DataController@editPesanan');
+
+    
+    Route::get('tambah-pelanggan', 'DataController@tambahPelanggan');
+    Route::get('data-pelanggan', 'DataController@dataPelanggan');
+    Route::get('dtPelanggan', 'DataController@dtPelanggan');
+    Route::get('detail-pelanggan/{uid}', 'DataController@detailPelanggan');
+    Route::get('delete-pelanggan/{uid}', 'DataController@deletePelanggan');
+    Route::get('edit-pelanggan/{uid}', 'DataController@editPelanggan');
+    
+    
+    Route::post('tambah-pelanggan', 'DataController@tambahPelanggan');
+    Route::post('edit-pelanggan/{uid}', 'DataController@editPelanggan');
 });

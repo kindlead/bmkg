@@ -1,14 +1,12 @@
 <script>
     $(function(){
-        $('#pesanan_kalibrasi').DataTable({
-            ajax: 'dtPesananKalibrasi', 
+        $('#data_pelanggan').DataTable({
+            ajax: 'dtPelanggan', 
             columns: [
-                { data: 'nama_pelanggan', name: 'nama_pelanggan', orderable:true, searchable: true },
-                { data: 'no_order', name: 'no_order', orderable:true, searchable: true },
-                { data: 'nama_alat', name: 'nama_alat', orderable:true, searchable: true },
-                { data: 'tanggal_masuk', name: 'tanggal_masuk', orderable:true, searchable: true },
-                { data: 'tanggal_selesai', name: 'tanggal_selesai', orderable:true, searchable: true },
-                { data: 'status', name: 'status', orderable:true, searchable: true },
+                { data: 'nama_perusahaan', name: 'nama_perusahaan', orderable:true, searchable: true },
+                { data: 'no_tlp', name: 'no_tlp', orderable:true, searchable: true },
+                { data: 'email', name: 'email', orderable:true, searchable: true },
+                { data: 'created_at', name: 'created_at', orderable:true, searchable: true },
                 { data: 'action', name: 'action', orderable:true, searchable: true },
             ],
             language: {
@@ -20,7 +18,7 @@
 
             columnDefs:[
                 {
-                    "targets" : [5,6],
+                    "targets" : [3],
                     "className": "text-center"
                 },
             ],

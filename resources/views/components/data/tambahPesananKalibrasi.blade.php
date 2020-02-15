@@ -87,6 +87,7 @@
         </div>
         <div class="modal-body">
           <form action="{{url('tambah-pelanggan')}}" method="POST">
+            <input type="hidden" name="pelanggan_page" value="0">
               @csrf
               <div class="row">
                   <div class="col-12 mt-3">

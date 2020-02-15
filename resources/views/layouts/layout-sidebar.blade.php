@@ -16,7 +16,7 @@
     <ul class="nav">
         {{-- Dashboard --}}
         <li class="nav-item @if($checkPoint == 'dashboard') active @endif">
-            <a class="nav-link" href="{{url('dashboard')}}" style="border:none">
+            <a class="nav-link" href="{{url('/')}}" style="border:none">
                 <i class="fas fa-box menu-icon" style="font-size:12px;"></i>
                 <span class="menu-title " style="font-size:12px;">Dashboard</span>
             </a>
@@ -43,7 +43,7 @@
             <div class="collapse" id="manage_data">
                 <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link text-white" style="font-size:10px; border:none;" href="{{url('tambah-pesanan')}}">Tambah Pesanan</a></li>
-                <li class="nav-item"> <a class="nav-link text-white" style="font-size:10px; border:none;" href="">Tambah Pelanggan</a></li>
+                <li class="nav-item"> <a class="nav-link text-white" style="font-size:10px; border:none;" href="{{url('tambah-pelanggan')}}">Tambah Pelanggan</a></li>
                 </ul>
             </div>
         </li>

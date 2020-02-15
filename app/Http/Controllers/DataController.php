@@ -24,13 +24,22 @@ class DataController extends Controller
         return redirect('tambah-pesanan')->with('success', 'Berhasil menambahkan pesanan !');
     }
     public function tambahPelanggan(Request $request){
-        Pelanggan::create($request->all());
+        if(!$request->all()){
+            $data['authData'] = "session";
+            return view('DataRequest.tambahPelanggan', compact('data'));
+        }
+        // Pelanggan::create($request->all());
+        if($request->pelanggan_page == '0')
+            return redirect('data-pelanggan')->with('success', 'Berhasil menambahkan pelanggan !');
         return redirect('tambah-pesanan')->with('success', 'Berhasil menambahkan pelanggan baru !');
     }
     public function pesananKalibrasiPage(){
         $data['authData'] = "session";
-        $data['pesanan'] = PesananKalibrasi::all();
         return view('DataRequest.pesananKalibrasiPage', compact('data'));
+    }
+    public function dataPelanggan(){
+        $data['authData'] = "session";
+        return view('DataRequest.dataPelanggan', compact('data'));
     }
     public function dtPesananKalibrasi(){
         $data = PesananKalibrasi::query();
@@ -54,8 +63,37 @@ class DataController extends Controller
         ->addColumn('tanggal_masuk', function($data){
             return Carbon::parse($data['tanggal_masuk'])->format('F d, Y');
         })
+        ->addColumn('status', function($data){
+            if($data['tanggal_masuk']<$data['tanggal_selesai'])
+                return '<span class="badge badge-warning">On Process</span>';
+            if($data['tanggal_masuk']>=$data['tanggal_selesai'])
+                return '<span class="badge badge-success">Finished</span>';
+            
+        })
         ->addColumn('tanggal_selesai', function($data){
             return Carbon::parse($data['tanggal_selesai'])->format('F d, Y');
+        })
+        ->rawColumns(['action','status'])
+        ->make(true);
+    }
+    public function dtPelanggan(){
+        $data = Pelanggan::query();
+        return Datatables::eloquent($data)
+        ->addColumn('created_at', function($data){
+            return Carbon::parse($data['created_at'])->format('F d, Y');
+        })
+        ->addColumn('action', function($data){
+            $detail = "detail-pelanggan/".$data['uid'];
+            $edit = "edit-pelanggan/".$data['uid'];
+            $delete = "'delete-pelanggan/".$data['uid']."'";
+            $message = "'Hapus'";
+            $confirm = "'Tidak bisa mengembalikan data yang telah dihapus'";
+            $data = [
+                '<a href="'.$detail.'" class="btn btn-success text-center btn-sm p-1 text-white m-1"><i class="fas fa-eye"></i></a>',
+                '<a href="'.$edit.'" class="btn btn-info text-center btn-sm p-1 text-white m-1"><i class="fas fa-edit"></i></a>',
+                '<a href="#" onclick="confirm_me('.$delete.','.$message.','.$confirm.')" class="btn btn-danger text-center btn-sm p-1 text-white m-1"><i class="fas fa-trash"></i></a>',
+            ];
+            return $data[0].$data[1].$data[2];
         })
         ->rawColumns(['action'])
         ->make(true);
@@ -88,5 +126,29 @@ class DataController extends Controller
     public function deletePesanan($uid){
         PesananKalibrasi::find($uid)->delete();
         return redirect('data-pesanan-kalibrasi')->with('success', 'Data berhasil dihapus !');
+    }    
+    public function detailPelanggan($uid){
+        $data['authData'] = 'Session';
+        $data['thisPelanggan'] = Pelanggan::find($uid);
+        return view('DataRequest.detailPelanggan', compact('data'));
+    }
+    public function deletePelanggan($uid){
+        Pelanggan::find($uid)->delete();
+        return redirect('data-pelanggan')->with('success', 'Data berhasil dihapus !');
+    }
+    public function editPelanggan(Request $request, $uid){
+        $pelanggan = Pelanggan::find($uid);
+        if(!$request->all()){
+            $data['authData'] = "Session";
+            $data['thisPelanggan'] = $pelanggan;
+            return view('DataRequest.editPelanggan', compact('data'));
+        }
+        $pelanggan->nama_perusahaan = $request->nama_perusahaan;
+        $pelanggan->jenis_perusahaan = $request->jenis_perusahaan;
+        $pelanggan->no_tlp = $request->no_tlp;
+        $pelanggan->email = $request->email;
+        $pelanggan->alamat = $request->alamat;
+        $pelanggan->save();
+        return redirect('detail-pelanggan/'.$uid)->with('success', 'Data Pelanggan '.$pelanggan['nama_perusahaan']. ' berhasil diubah !');
     }
 }

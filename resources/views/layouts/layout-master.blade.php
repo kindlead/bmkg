@@ -21,6 +21,19 @@
         <div class="content-wrapper"> 
           <div class="row">
             <div class="col-sm-12 mb-4 mb-xl-0">
+
+              <div class="alert alert-danger">
+                <div class="row">
+                  <div class="col-1 text-center">
+                    <i class="fas fs30 fa-warning"></i>
+                  </div>
+                  <div class="col-11 pl-0">                    
+                    <span>
+                      You only have 4 days left to use this Web Application, after that you will be lost access in all section of this Web Application and may not be able to manage your data, <b class="upper underline"> Please contact developer for continue Subcription ! </b>
+                    </span>
+                  </div>
+                </div>
+              </div>
               
               <li style="list-style: none;" class="font-weight-normal mb-2 text-muted">
                 @if(isset($mainPage1) && $mainPage1 != $pageTitle)

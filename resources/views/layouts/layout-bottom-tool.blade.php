@@ -64,6 +64,7 @@
 {{-- Content --}}
 @if($title == "report")
     @component('components.data.datatable-pesanan-kalibrasi')@endcomponent
+    @component('components.data.datatable-pelanggan')@endcomponent
 @endif
 
 
