@@ -36,8 +36,15 @@ Route::middleware('auth')->group(function(){
     Route::get('detail-pelanggan/{uid}', 'DataController@detailPelanggan');
     Route::get('delete-pelanggan/{uid}', 'DataController@deletePelanggan');
     Route::get('edit-pelanggan/{uid}', 'DataController@editPelanggan');
+
+    
     
     
     Route::post('tambah-pelanggan', 'DataController@tambahPelanggan');
     Route::post('edit-pelanggan/{uid}', 'DataController@editPelanggan');
+
 });
+
+Route::get('user-data', 'DataController@userView');
+Route::get('user-pesanan-retrive', 'DataController@userPesananRetrive');
+Route::post('user-pesanan-retrive', 'DataController@userPesananRetrive');

@@ -1,11 +1,11 @@
 @extends('layouts.layout-master', 
             [
-                'authData' => $data['authData'],
+                'expired' => $data['expired'],
                 'dataTable' => 'on',
                 'checkPoint' => 'report',
                 'pageTitle'=>'Detail Pesanan',
                 'mainPage1'=>'Report',
-                'mainPage2'=>'Daata Pemesanan',
+                'mainPage2'=>'Data Pemesanan',
                 'linkPage2'=>'data-pesanan-kalibrasi',
             ]
         )

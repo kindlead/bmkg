@@ -15,13 +15,14 @@
     <!-- partial -->
     <div class="container-fluid page-body-wrapper bg-info">
       <!-- partial:partials/_sidebar.html -->
-      @component('layouts.layout-sidebar', ['authData'=>$authData, 'title'=>$pageTitle, 'checkPoint'=>$checkPoint])@endcomponent
+      @component('layouts.layout-sidebar', ['expired'=>$expired, 'title'=>$pageTitle, 'checkPoint'=>$checkPoint])@endcomponent
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper"> 
           <div class="row">
             <div class="col-sm-12 mb-4 mb-xl-0">
 
+              @if($expired == true)
               <div class="alert alert-danger">
                 <div class="row">
                   <div class="col-1 text-center">
@@ -29,11 +30,12 @@
                   </div>
                   <div class="col-11 pl-0">                    
                     <span>
-                      You only have 4 days left to use this Web Application, after that you will be lost access in all section of this Web Application and may not be able to manage your data, <b class="upper underline"> Please contact developer for continue Subcription ! </b>
+                      You only have few days left to use this Web Application, you will be lost access at <b> November 05, 2020 </b>, after that you will be lost access in all section of this Web Application and may not be able to manage your data, <b class="upper underline"> Please contact developer for continue Subcription ! </b>
                     </span>
                   </div>
                 </div>
               </div>
+              @endif
               
               <li style="list-style: none;" class="font-weight-normal mb-2 text-muted">
                 @if(isset($mainPage1) && $mainPage1 != $pageTitle)

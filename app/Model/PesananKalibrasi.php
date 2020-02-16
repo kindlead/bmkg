@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class PesananKalibrasi extends Model
 {
@@ -25,13 +26,20 @@ class PesananKalibrasi extends Model
 
     protected $append = [
         'nama_pelanggan',
+        'nama_pegawai',
     ];
 
     public function pelanggan_append(){
         return $this->belongsTo(Pelanggan::class, 'uid_pelanggan','uid');
     }
+    public function pegawai_append(){
+        return $this->belongsTo(User::class, 'uid_pegawai', 'id');
+    }
 
     public function getNamaPelangganAttribute(){
         return $this->pelanggan_append->nama_perusahaan ?? "Unknown";
+    }
+    public function getNamaPegawaiAttribute(){
+        return $this->pegawai_append->name ?? "Unknown";
     }
 }

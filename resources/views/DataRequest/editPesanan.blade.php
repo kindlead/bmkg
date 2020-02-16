@@ -1,6 +1,6 @@
 @extends('layouts.layout-master', 
             [
-                'authData' => $data['authData'],
+                'expired' => $data['expired'],
                 'dataTable' => 'on',
                 'checkPoint' => 'report',
                 'pageTitle'=>'Edit Pesanan' . $data['thisPesanan']['no_order'],

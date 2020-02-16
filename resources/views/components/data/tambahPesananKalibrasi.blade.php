@@ -51,6 +51,10 @@
                     <input type="text" name="tanggal_selesai" class="form-control" placeholder="MM/DD/YY" id="date">
                 </div>
                 <div class="col-12 mt-3">
+                    <label for="">Keterangan</label>
+                    <textarea type="text" name="keterangan" class="form-control"> </textarea>
+                </div>
+                <div class="col-12 mt-3">
                     <button type="submit" class="btn btn-block btn-dark">Proses</button>
                 </div>
             </div>

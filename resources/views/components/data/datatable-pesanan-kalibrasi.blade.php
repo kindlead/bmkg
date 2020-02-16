@@ -8,6 +8,7 @@
                 { data: 'nama_alat', name: 'nama_alat', orderable:true, searchable: true },
                 { data: 'tanggal_masuk', name: 'tanggal_masuk', orderable:true, searchable: true },
                 { data: 'tanggal_selesai', name: 'tanggal_selesai', orderable:true, searchable: true },
+                { data: 'created_at', name: 'created_at', orderable:true, searchable: true },
                 { data: 'status', name: 'status', orderable:true, searchable: true },
                 { data: 'action', name: 'action', orderable:true, searchable: true },
             ],
@@ -17,6 +18,8 @@
             lengthMenu: '_MENU_ items/page',
             destroy: true
             },
+
+            aaSorting: [[5, 'desc']],
 
             columnDefs:[
                 {

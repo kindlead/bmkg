@@ -27,14 +27,32 @@
             </div>
 
             <div class="row">
+
+                <div class="col-2 mt-3">Pegawai Input</div>
+                <div class="col-9 mt-2">: <span class="btn btn-info ml-3 text-white" style="width:200px;">{{$thisPesanan['nama_pegawai']}}</span></div>
                 <div class="col-2 mt-3">Nomor Order</div>
                 <div class="col-9 mt-2">: <span class="btn btn-dark ml-3 text-white" style="width:200px;">{{$thisPesanan['no_order']}}</span></div>
+                <div class="col-2 mt-3">Nomor ID</div>
+                <div class="col-9 mt-2">: <span class="btn btn-dark ml-3 text-white" style="width:200px;">{{$thisPesanan['no_id']}}</span></div>
                 <div class="col-2 mt-3">Nama Alat</div>
                 <div class="col-9 mt-2">: <span class="btn btn-dark ml-3 text-white" style="width:200px;">{{$thisPesanan['nama_alat']}}</span></div>
+                <div class="col-2 mt-3">Spesifikasi</div>
+                <div class="col-9 mt-2">: <span class="btn btn-dark ml-3 text-white" style="width:200px;">{{$thisPesanan['spesifikasi']}}</span></div>
+                <div class="col-2 mt-3">Jumlah</div>
+                <div class="col-9 mt-2">: <span class="btn btn-dark ml-3 text-white" style="width:200px;">{{$thisPesanan['jumlah']}} Unit</span></div>
                 <div class="col-2 mt-3">Tanggal Masuk</div>
                 <div class="col-9 mt-2">: <span class="btn btn-dark ml-3 text-white" style="width:200px;">{{$thisPesanan['tanggal_masuk']}}</span></div>
                 <div class="col-2 mt-3">Tanggal selesai</div>
                 <div class="col-9 mt-2">: <span class="btn btn-dark ml-3 text-white" style="width:200px;">{{$thisPesanan['tanggal_selesai']}}</span></div>
+            
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h4>Keterangan</h4>
+                        <span class="fs12">Keterangan pemesanan alat untuk pelanggan {{$thisPesanan['nama_pelanggan']}}</span> <hr>
+                        {{$thisPesanan['keterangan']}}
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

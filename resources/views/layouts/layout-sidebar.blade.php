@@ -8,7 +8,7 @@
         </div>
         <div class="user-designation fs9">
             {{-- {{$authData['jabatan']}} --}}
-            Manager
+            Administrator
         </div>
     </div>
     

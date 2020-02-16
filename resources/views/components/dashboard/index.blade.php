@@ -23,7 +23,7 @@
                 <div class="col-12 mt-3">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Total Pelanggan Bulan Ini</h4>
+                            <h4 class="card-title">Total Pesanan Bulan Ini</h4>
                             <p>Total Pesanan Terbuat Bulan Ini</p>
                             <h4 class="text-dark font-weight-bold mb-2">{{count($pesanan)}} <span class="fs10 text-info">Pesanan</span></h4>
                         </div>

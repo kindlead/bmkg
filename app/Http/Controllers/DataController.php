@@ -10,9 +10,15 @@ use Datatables;
 
 class DataController extends Controller
 {
+    public $expired = false;
+    public $dateEnd = "2020-11-01";
+    public function __construct(){
+    if(Carbon::now()>=Carbon::parse($this->dateEnd))
+        $this->expired = true;
+    }
     public function tambahPesananKalibrasi(Request $request){
         if(!$request->all()){
-            $data['authData'] = "Session";
+            $data['expired'] = "Session";
             $data['pelanggan'] = Pelanggan::all();
             $data['pesanan'] = PesananKalibrasi::all();
             return view('DataRequest.tambahPesananKalibrasi', compact('data'));
@@ -25,7 +31,7 @@ class DataController extends Controller
     }
     public function tambahPelanggan(Request $request){
         if(!$request->all()){
-            $data['authData'] = "session";
+            $data['expired'] = $this->expired;
             return view('DataRequest.tambahPelanggan', compact('data'));
         }
         // Pelanggan::create($request->all());
@@ -34,11 +40,11 @@ class DataController extends Controller
         return redirect('tambah-pesanan')->with('success', 'Berhasil menambahkan pelanggan baru !');
     }
     public function pesananKalibrasiPage(){
-        $data['authData'] = "session";
+        $data['expired'] = $this->expired;
         return view('DataRequest.pesananKalibrasiPage', compact('data'));
     }
     public function dataPelanggan(){
-        $data['authData'] = "session";
+        $data['expired'] = $this->expired;
         return view('DataRequest.dataPelanggan', compact('data'));
     }
     public function dtPesananKalibrasi(){
@@ -64,10 +70,10 @@ class DataController extends Controller
             return Carbon::parse($data['tanggal_masuk'])->format('F d, Y');
         })
         ->addColumn('status', function($data){
-            if($data['tanggal_masuk']<$data['tanggal_selesai'])
-                return '<span class="badge badge-warning">On Process</span>';
-            if($data['tanggal_masuk']>=$data['tanggal_selesai'])
+            if(Carbon::now()>=$data['tanggal_selesai'])
                 return '<span class="badge badge-success">Finished</span>';
+            else
+                return '<span class="badge badge-warning">On Process</span>';
             
         })
         ->addColumn('tanggal_selesai', function($data){
@@ -100,7 +106,7 @@ class DataController extends Controller
     }
     public function editPesanan(Request $request, $uid){
         if(!$request->all()){
-            $data['authData'] = "Session";
+            $data['expired'] = $this->expired;
             $data['thisPesanan'] = PesananKalibrasi::find($uid);
             $data['pelanggan'] = Pelanggan::all();
             return view('DataRequest.editPesanan', compact('data'));
@@ -117,7 +123,7 @@ class DataController extends Controller
             return redirect('detail-pemesanan/'.$pesanan['uid'])->with('success','Berhasil mengedit Pesanan untuk Nomor Order '.$pesanan['no_order']);
     }
     public function detailPesanan($uid){
-        $data['authData'] = 'Session';
+        $data['expired'] = $this->expired;
         $data['thisPesanan'] = PesananKalibrasi::find($uid);
         $data['thisPesanan']['tanggal_masuk'] = Carbon::parse($data['thisPesanan']['tanggal_masuk'])->format('F d, Y');
         $data['thisPesanan']['tanggal_selesai'] = Carbon::parse($data['thisPesanan']['tanggal_selesai'])->format('F d, Y');
@@ -128,7 +134,7 @@ class DataController extends Controller
         return redirect('data-pesanan-kalibrasi')->with('success', 'Data berhasil dihapus !');
     }    
     public function detailPelanggan($uid){
-        $data['authData'] = 'Session';
+        $data['expired'] = $this->expired;
         $data['thisPelanggan'] = Pelanggan::find($uid);
         return view('DataRequest.detailPelanggan', compact('data'));
     }
@@ -139,7 +145,7 @@ class DataController extends Controller
     public function editPelanggan(Request $request, $uid){
         $pelanggan = Pelanggan::find($uid);
         if(!$request->all()){
-            $data['authData'] = "Session";
+            $data['expired'] = $this->expired;
             $data['thisPelanggan'] = $pelanggan;
             return view('DataRequest.editPelanggan', compact('data'));
         }
@@ -150,5 +156,26 @@ class DataController extends Controller
         $pelanggan->alamat = $request->alamat;
         $pelanggan->save();
         return redirect('detail-pelanggan/'.$uid)->with('success', 'Data Pelanggan '.$pelanggan['nama_perusahaan']. ' berhasil diubah !');
+    }
+
+
+    // User View
+    public function userView(){
+        return view('UserView.userView');
+    }
+    public function userPesananRetrive(Request $request){
+
+        $pesanan =  PesananKalibrasi::where('no_order',$request->no_order)->first();
+        $pesanan['tanggal_masuk'] = Carbon::parse($pesanan['tanggal_masuk'])->format('F d, Y');
+        $pesanan['tanggal_selesai'] = Carbon::parse($pesanan['tanggal_selesai'])->format('F d, Y');
+        $status = false;
+        if(Carbon::now()>=$pesanan['tanggal_selesai'])
+            $status = true;
+        else
+            $status = false;
+        return view('UserView.retrivePesanan', [
+            'pesanan' => $pesanan,
+            'status' => $status,
+        ]);
     }
 }

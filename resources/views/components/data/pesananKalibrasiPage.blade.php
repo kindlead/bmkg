@@ -18,6 +18,7 @@
                             <th>Nama Alat</th>
                             <th>Tanggal Masuk</th>
                             <th>Tanggal Selesai</th>
+                            <th>Waktu Input</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>

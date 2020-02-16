@@ -64,7 +64,7 @@
                         {{ __('Forgot Your Password?') }}
                     </a>
                 @endif --}}
-                <p>Have no account yet? <a href="{{route('register')}}">Register !</a></p>
+                <p class="text-dark font-weight-medium text-center flex-grow align-self-end">Don't have any account?   <a class="text-info bold" href="{{ route('register') }}">Register!</a></p>
                 <p class="text-dark font-weight-medium text-center flex-grow align-self-end">Powered by : <a class="text-info underline bold" href="https://instagram.com/kindlead_">Kindlead</a></p>
                 </div>
               </form>
