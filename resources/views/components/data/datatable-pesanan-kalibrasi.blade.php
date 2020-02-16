@@ -26,6 +26,9 @@
                     "targets" : [5,6],
                     "className": "text-center"
                 },
+                {
+                    "bVisible": false, "aTargets": [5]
+                },
             ],
 
             // aaSorting: [[1, 'desc']],

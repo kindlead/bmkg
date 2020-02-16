@@ -3,6 +3,11 @@
         infosuccess('{{session('success')}}');
     </script>
 @endif
+@if(session('failed'))
+    <script>
+        infoerror('{{session('failed')}}');
+    </script>
+@endif
 <div class="col-md-12 col-lg-8">
     <div class="card">
         <button class="btn btn-info btn-sm position-absolute top-0" data-toggle="modal" data-target="#exampleModal" style="right:20px; top:20px;"> <i class="fas fa-plus"></i> <span class="ml-2">Tambah Pelanggan</span></button>
@@ -44,11 +49,11 @@
                 </div>
                 <div class="col-2 mt-3">
                     <label for="">Tgl Masuk</label>
-                    <input type="text" name="tanggal_masuk" class="form-control" placeholder="MM/DD/YY" id="date">
+                    <input type="text" autocomplete="off" name="tanggal_masuk" class="form-control" placeholder="MM/DD/YY" id="date">
                 </div>
                 <div class="col-2 mt-3">
                     <label for="">Tgl Keluar</label>
-                    <input type="text" name="tanggal_selesai" class="form-control" placeholder="MM/DD/YY" id="date">
+                    <input type="text" autocomplete="off" name="tanggal_selesai" class="form-control" placeholder="MM/DD/YY" id="date">
                 </div>
                 <div class="col-12 mt-3">
                     <label for="">Keterangan</label>

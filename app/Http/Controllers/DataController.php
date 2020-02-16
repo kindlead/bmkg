@@ -18,11 +18,15 @@ class DataController extends Controller
     }
     public function tambahPesananKalibrasi(Request $request){
         if(!$request->all()){
-            $data['expired'] = "Session";
+            $data['expired'] = $this->expired;
             $data['pelanggan'] = Pelanggan::all();
             $data['pesanan'] = PesananKalibrasi::all();
             return view('DataRequest.tambahPesananKalibrasi', compact('data'));
         }
+        if(PesananKalibrasi::where('no_order',$request->no_order)->first())
+            return redirect('tambah-pesanan')->with('failed', 'Nomor order dideteksi duplikat, coba yang lain !');
+        if(PesananKalibrasi::where('no_id',$request->no_id)->first())
+            return redirect('tambah-pesanan')->with('failed', 'Nomor ID dideteksi duplikat, coba yang lain !');
         $insert = $request->all();
         $insert['tanggal_masuk'] = Carbon::parse($request->tanggal_masuk);
         $insert['tanggal_selesai'] = Carbon::parse($request->tanggal_selesai);
@@ -70,7 +74,7 @@ class DataController extends Controller
             return Carbon::parse($data['tanggal_masuk'])->format('F d, Y');
         })
         ->addColumn('status', function($data){
-            if(Carbon::now()>=$data['tanggal_selesai'])
+            if(Carbon::now()>=Carbon::parse($data['tanggal_selesai']))
                 return '<span class="badge badge-success">Finished</span>';
             else
                 return '<span class="badge badge-warning">On Process</span>';
@@ -169,7 +173,7 @@ class DataController extends Controller
         $pesanan['tanggal_masuk'] = Carbon::parse($pesanan['tanggal_masuk'])->format('F d, Y');
         $pesanan['tanggal_selesai'] = Carbon::parse($pesanan['tanggal_selesai'])->format('F d, Y');
         $status = false;
-        if(Carbon::now()>=$pesanan['tanggal_selesai'])
+        if(Carbon::now()>=Carbon::parse($pesanan['tanggal_selesai']))
             $status = true;
         else
             $status = false;
