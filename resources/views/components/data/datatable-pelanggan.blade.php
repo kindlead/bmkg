@@ -23,7 +23,7 @@
                 },
             ],
 
-            // aaSorting: [[1, 'desc']],
+            aaSorting: [[3, 'desc']],
             
             dom: 'Bfrtip',  
             buttons: [  

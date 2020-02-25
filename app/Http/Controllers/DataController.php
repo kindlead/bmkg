@@ -7,6 +7,7 @@ use App\Model\Pelanggan;
 use App\Model\PesananKalibrasi;
 use Carbon\Carbon;
 use Datatables;
+use App\User;
 
 class DataController extends Controller
 {
@@ -15,6 +16,12 @@ class DataController extends Controller
     public function __construct(){
     if(Carbon::now()>=Carbon::parse($this->dateEnd))
         $this->expired = true;
+    }
+    public function daftarPegawai(Request $request){
+        $data =  $request->all();
+        $data['password'] = bcrypt($data['password']);
+        User::create($data);
+        return redirect('/')->with('success', 'Berhasil menambahkan pegawai baru');
     }
     public function tambahPesananKalibrasi(Request $request){
         if(!$request->all()){
@@ -38,7 +45,7 @@ class DataController extends Controller
             $data['expired'] = $this->expired;
             return view('DataRequest.tambahPelanggan', compact('data'));
         }
-        // Pelanggan::create($request->all());
+        Pelanggan::create($request->all());
         if($request->pelanggan_page == '0')
             return redirect('data-pelanggan')->with('success', 'Berhasil menambahkan pelanggan !');
         return redirect('tambah-pesanan')->with('success', 'Berhasil menambahkan pelanggan baru !');
@@ -89,9 +96,9 @@ class DataController extends Controller
     public function dtPelanggan(){
         $data = Pelanggan::query();
         return Datatables::eloquent($data)
-        ->addColumn('created_at', function($data){
-            return Carbon::parse($data['created_at'])->format('F d, Y');
-        })
+        // ->addColumn('created_at', function($data){
+        //     return Carbon::parse($data['created_at'])->format('F d, Y');
+        // })
         ->addColumn('action', function($data){
             $detail = "detail-pelanggan/".$data['uid'];
             $edit = "edit-pelanggan/".$data['uid'];

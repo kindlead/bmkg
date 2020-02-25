@@ -1,3 +1,8 @@
+@if(session('success'))
+    <script>
+        infosuccess('{{session('success')}}');
+    </script>
+@endif
 <div class="col-md-12">
     <div class="row mt-3">
         <div class="col-6">

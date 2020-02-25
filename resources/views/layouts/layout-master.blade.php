@@ -75,5 +75,44 @@
   @component('layouts.layout-bottom-tool', ['title'=>$checkPoint, 'dataTable'=>$dataTable])@endcomponent
 </body>
 
+<form action="{{url('daftar-pegawai')}}" method="POST">@csrf
+<div class="modal fade" id="daftar" tabindex="-1" role="dialog" aria-labelledby="daftarLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="daftarLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12 mt-3">
+            <label for="">Username :</label>
+            <input type="text" name="name" class="form-control">
+          </div>
+          <div class="col-12 mt-3">
+            <label for="">Email :</label>
+            <input type="text" name="email" class="form-control">
+          </div>
+          <div class="col-12 mt-3">
+            <label for="">Password :</label>
+            <input type="password" name="password" class="form-control">
+          </div>
+          <div class="col-12 mt-3">
+            <label for="">NIP :</label>
+            <input type="text" name="nip" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-dark">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
 </html>
 

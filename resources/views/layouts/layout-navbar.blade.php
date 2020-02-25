@@ -40,6 +40,10 @@
             {{-- <a class="dropdown-item preview-item">               
                 <i class="icon-head"></i> Profile
             </a> --}}
+
+                <a class="dropdown-item" onclick="event.preventDefault();" data-toggle="modal" data-target="#daftar">
+                    {{ __('Register') }}
+                </a>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
                     {{ __('Logout') }}

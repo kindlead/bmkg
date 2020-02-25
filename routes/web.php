@@ -19,6 +19,8 @@ Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware('auth')->group(function(){
+    Route::post('daftar-pegawai', 'DataController@daftarPegawai');
+
     Route::get('/', 'DashboardController@index');
     Route::get('tambah-pesanan', 'DataController@tambahPesananKalibrasi');
     Route::get('data-pesanan-kalibrasi', 'DataController@pesananKalibrasiPage');
